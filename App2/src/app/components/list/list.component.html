@@ -1,0 +1,57 @@
+<div class="p-5">
+	<mat-card class="mb-5">
+		<h1>LIST OF DOGS</h1>
+		<p>Search through our list of dogs</p>
+		
+		<button mat-raised-button color="primary" (click)="addDog()">Add a Dog</button>
+
+	<div class="mt-5 example-container mat-elevation-z8">		
+  	<mat-table #dogs [dataSource]="dataSource">
+   <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+      <!-- Breed Column -->
+    <ng-container matColumnDef="breed">
+      <mat-header-cell *matHeaderCellDef> Breed </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.breed}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
+	</mat-card>
+
+
+	<!-- IF STATEMENT IF, ADD BUTTON AS BEEN CLICK SHOW FORM -->
+	<div id="newDogContainer" *ngIf="showAddDogForm">
+		<mat-card>
+		<div class="col-md-6">
+			<h2>Add a new Dog</h2>
+
+				<form novalidate #f="ngForm" (ngSubmit)="submitDog(f)">
+					<mat-form-field class="example-full-width"> 
+			    	<input [(ngModel)]="name" name="name" matInput placeholder="Dogs Name">
+			  		</mat-form-field>
+
+			  		<mat-form-field class="example-full-width">
+			    	<input [(ngModel)]="breed" name="breed" matInput placeholder="Breed">
+			  		</mat-form-field>
+			
+					<button mat-raised-button color="primary" type="submit" name="submit" class="btn btn-success" value="Add Dog">Add Dog</button>	
+					
+					<button mat-raised-button color="primary" (click)="cancel()">Cancel</button>
+				</form> 
+			</div>
+		</mat-card>
+	</div>
+</div>
