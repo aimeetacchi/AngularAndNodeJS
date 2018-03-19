@@ -69,7 +69,10 @@ app.post('/api/addDog', (req, res) => {
     console.log(data.name);
   
     // Set the headers
-    var headers = { 'Content-Type': '*' };
+    var headers = { 'access-control-allow-origin': '*',
+                    'access-control-allow-methods': 'GET, PUT, POST, DELETE, HEAD, OPTIONS',
+                    'Content-Type': 'application/hal+json;charset=UTF-8',
+                  };
      
      //Set the body for the Api
      var apiBody = {
